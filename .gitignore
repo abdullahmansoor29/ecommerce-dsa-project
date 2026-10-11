@@ -1,0 +1,7 @@
+*.exe
+*.o
+*.obj
+database/shop.db
+__pycache__/
+*.pyc
+.vscode/
