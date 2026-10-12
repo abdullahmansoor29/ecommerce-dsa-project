@@ -29,6 +29,14 @@ std::string hashPassword(const std::string& password)
 int main()
 {
     httplib::Server server;
+    
+     // Allow the frontend (hosted on a different domain) to call this API.
+    // Without this, browsers block cross-origin requests by default.
+    server.set_default_headers({
+        {"Access-Control-Allow-Origin", "*"},
+        {"Access-Control-Allow-Methods", "GET, POST, OPTIONS"},
+        {"Access-Control-Allow-Headers", "Content-Type"}
+    });
 
     Database db("../database/shop.db");
     db.setupTables();
