@@ -10,6 +10,7 @@
 #include <map>
 #include <functional>
 #include <sstream>
+#include<cstdlib>
 
 using json = nlohmann::json;
 
@@ -543,8 +544,13 @@ int main()
         res.set_content(json{{"status", "ok"}, {"message", "C++ backend is running"}}.dump(), "application/json");
     });
 
-    std::cout << "Server running on http://localhost:8080" << std::endl;
-    server.listen("localhost", 8080);
+        // Render assigns a port via the PORT environment variable.
+    // Fall back to 8080 for local development.
+    const char* portEnv = std::getenv("PORT");
+    int port = portEnv ? std::stoi(portEnv) : 8080;
+
+    std::cout << "Server running on port " << port << std::endl;
+    server.listen("0.0.0.0", port);
 
     return 0;
 }
