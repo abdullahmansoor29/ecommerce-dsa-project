@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 
-API_URL = "http://localhost:8080"
+API_URL = "https://reprogram-footrest-dandelion.ngrok-free.dev"
 
 # ---------------- Page setup ----------------
 st.set_page_config(page_title="E-Commerce Shop", page_icon="🛒", layout="wide")
